@@ -1,0 +1,95 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #464010;
+    /* ...background-image: url("src/images/snake-background1.png.png"); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    color: white;
+    text-shadow: 1px 1px 0px #aaa, 2px 2px 0px #888, 3px 3px 0px #666;
+}
+.box {
+    background: rgb(170, 146, 12);
+    padding: 20px;
+    border-radius: 18px; 
+    box-shadow: 0 0 5px rgb(0, 0, 0), 0 0 10px rgb(105, 105, 105), 0 0 15px rgb(238, 238, 240);
+    text-align: center;
+   
+}
+.game_base{
+    width: 90%;
+    background-color: brown !important;
+
+}
+input {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 8px;
+    border-radius: 10px;
+}
+button {
+    background: #7e0d0d;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius:8px;
+    border: #3e0d0d solid 2px;
+    font-size:25px;
+}
+button:active {
+    background: #4d0c0c;
+    color:white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius:10px;
+    border: #1e0d0d solid 2px;
+    color: white; /* Neon green color */
+    text-shadow: 
+        0 0 5px #eeea09,   /* Outer glow */
+        0 0 10px #ffd414,  /* Outer glow */
+        0 0 15px #e7c70f,  /* Outer glow */
+        0 0 20px #e28408,  /* Pink glow */
+        0 0 30px #ff6600da,  /* Pink glow */
+        0 0 40px #ff0000;  /* Pink glow */
+    animation: flicker 1.5s infinite alternate; /* Flicker effect */
+}
+@keyframes flicker {
+    0% { text-shadow: 
+        0 0 5px #eeea09,   /* Outer glow */
+        0 0 10px #ffd414,  /* Outer glow */
+        0 0 15px #e7c70f,  /* Outer glow */
+        0 0 20px #e28408,  /* Pink glow */
+        0 0 30px #ff6600da,  /* Pink glow */
+        0 0 40px #ff0000;  /* Pink glow */
+    }
+    50% { text-shadow: 
+        0 0 5px #eeea09,   /* Outer glow */
+        0 0 10px #ffd414,  /* Outer glow */
+        0 0 15px #e7c70f,  /* Outer glow */
+        0 0 20px #e28408,  /* Pink glow */
+        0 0 30px #ff6600da,  /* Pink glow */
+        0 0 40px #ff0000;  /* Pink glow */
+    }
+    100% { text-shadow: 
+        0 0 5px #eeea09,   /* Outer glow */
+        0 0 10px #ffd414,  /* Outer glow */
+        0 0 15px #e7c70f,  /* Outer glow */
+        0 0 20px #e28408,  /* Pink glow */
+        0 0 30px #ff6600da,  /* Pink glow */
+        0 0 40px #ff0000;  /* Pink glow */
+    }
+}
+
+a {
+    display: block;
+    margin-top: 10px;
+    text-shadow: none;
+}
+.hidden { display: none; }
