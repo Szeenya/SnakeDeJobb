@@ -23,18 +23,22 @@ $isFirstPlace = !$hasHigherScore;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snake Game</title>
+    <title class="Game_title">Snake Game</title>
     <link rel="shortcut icon" type="image/x-icon" href="src/images/icon.svg" /> 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="src/style/game_style.css">
     <link rel="stylesheet" href="src/style/darkmode_style.css">
+    
 </head>
 <body>
 <nav class="navbar navbar-expand-lg bg-transparent">
   <div class="container-fluid">
-  <span class="navbar-brand welcome-text">Welcome, 
+  <span class="navbar-brand welcome-text">Csőőő, 
     <span class="username <?php echo $isFirstPlace ? 'first-place' : ''; ?>">
       <?php echo htmlspecialchars($_SESSION['username']); ?>
+      <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']): ?>
+        <span class="admin-badge">Admin</span>
+      <?php endif; ?>
     </span> !
   </span>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,24 +46,27 @@ $isFirstPlace = !$hasHigherScore;
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ms-auto me-3">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Game Options
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#" onclick="MapIncrease()">Increase Map Size</a></li>
-            <li><a class="dropdown-item" href="#" onclick="MapDecrease()">Decrease Map Size</a></li>
-            <li><a class="dropdown-item" href="#" onclick="resetGame()">Reset Game</a></li>
-          </ul>
+        <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']): ?>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Játék beállítások
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#" onclick="MapIncrease()">Increase Map Size</a></li>
+              <li><a class="dropdown-item" href="#" onclick="MapDecrease()">Decrease Map Size</a></li>
+              <li><a class="dropdown-item" href="#" onclick="resetGame()">Reset Game</a></li>
+              <li><a class="dropdown-item" href="#" onclick="addPoints()">+10 Pont</a></li>
+            </ul>
+          </li>
+        <?php endif; ?>
+        <li class="nav-item">
+          <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#settingsModal">Beállítások</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#settingsModal">Settings</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#leaderboardModal">Leaderboard</a>
+          <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#leaderboardModal">Toplista</a>
         </li>
       </ul>
-      <a href="logout.php" class="btn btn-outline-danger">Logout</a>
+      <a href="logout.php" class="btn btn-outline-danger">Kijelentkezés</a>
     </div>
   </div>
 </nav>
@@ -69,13 +76,13 @@ $isFirstPlace = !$hasHigherScore;
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="settingsModalLabel">User Settings</h5>
+        <h5 class="modal-title" id="settingsModalLabel">Felhasználó Beállítások</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form id="settingsForm" action="update_settings.php" method="POST">
           <div class="mb-3">
-            <label for="username" class="form-label">Username</label>
+            <label for="username" class="form-label">Felhasználónév</label>
             <input type="text" class="form-control" id="username" name="username" value="<?php echo htmlspecialchars($_SESSION['username']); ?>" disabled>
           </div>
           <div class="mb-3">
@@ -83,15 +90,15 @@ $isFirstPlace = !$hasHigherScore;
       <input type="email" class="form-control" id="email" name="email" value="<?php echo htmlspecialchars($_SESSION['email'] ?? ''); ?>" disabled>
       </div>
             <div class="mb-3">
-            <label for="newPassword" class="form-label">New Password</label>
+            <label for="newPassword" class="form-label">Új jelszó</label>
             <input type="password" class="form-control" id="newPassword" name="newPassword">
           </div>
           <div class="mb-3">
-            <label for="confirmPassword" class="form-label">Confirm New Password</label>
+            <label for="confirmPassword" class="form-label">Új jelszó megint</label>
             <input type="password" class="form-control" id="confirmPassword" name="confirmPassword">
           </div>
           <div class="mb-3">
-            <label for="currentPassword" class="form-label">Current Password (required)</label>
+            <label for="currentPassword" class="form-label">Mostani jelszó (kötelező)</label>
             <input type="password" class="form-control" id="currentPassword" name="currentPassword" required>
           </div>
           <div class="mb-3">
@@ -104,13 +111,13 @@ $isFirstPlace = !$hasHigherScore;
         <hr class="border-light mt-4">
       
           <button type="button" class="btn btn-danger btn-delete-account" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
-            <i class="bi bi-trash-fill me-2"></i>Delete Account
+            <i class="bi bi-trash-fill me-2"></i>Fiók törlése
           </button>
    
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" form="settingsForm" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezárás</button>
+        <button type="submit" form="settingsForm" class="btn btn-primary">Mentés</button>
       </div>
     </div>
   </div>
@@ -121,21 +128,21 @@ $isFirstPlace = !$hasHigherScore;
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-danger" id="deleteAccountModalLabel">Delete Account</h5>
+        <h5 class="modal-title text-danger" id="deleteAccountModalLabel">Fiók törlése</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Are you sure you want to delete your account? This action cannot be undone.</p>
+        <p>Biztos hogy törölni akarod? Később nem lehet visszavonni.</p>
         <form id="deleteAccountForm" action="delete_account.php" method="POST">
           <div class="mb-3">
-            <label for="deleteConfirmPassword" class="form-label">Enter your password to confirm:</label>
+            <label for="deleteConfirmPassword" class="form-label">írd be a jelszavad: </label>
             <input type="password" class="form-control" id="deleteConfirmPassword" name="password" required>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="submit" form="deleteAccountForm" class="btn btn-danger">Delete Account</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégse</button>
+        <button type="submit" form="deleteAccountForm" class="btn btn-danger">Fiók törlése</button>
       </div>
     </div>
   </div>
@@ -146,7 +153,7 @@ $isFirstPlace = !$hasHigherScore;
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="leaderboardModalLabel">Leaderboard</h5>
+                <h5 class="modal-title" id="leaderboardModalLabel">Toplista</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -155,8 +162,8 @@ $isFirstPlace = !$hasHigherScore;
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Player</th>
-                            <th scope="col">Score</th>
+                            <th scope="col">Felhasználónév</th>
+                            <th scope="col">Pont</th>
                         </tr>
                     </thead>
                     <tbody id="leaderboardTable">
@@ -170,20 +177,20 @@ $isFirstPlace = !$hasHigherScore;
 </div>
 
     <div class="page-container">
-        <h1>Snake Game</h1>
+        <img src="src/images/title3.png" alt="">
         
         <div class="game-wrapper">
             <div class="game_container">
                 <canvas width="400" height="400"></canvas>
                 
                 <div class="controls">
-                    <button id="startButton" class="btn btn-success">Start Game</button>
-                    <button id="resetButton" class="btn btn-danger" style="display: none;">Reset Game</button>
+                    <button id="startButton" class="btn btn-success">Játék</button>
+                    <button id="resetButton" class="btn btn-danger" style="display: none;">Reset</button>
                 </div>
             </div>
 
             <div class="stats-panel">
-                <p id="score">Score: 0</p>
+                <p id="score">Pont: 0</p>
                 <div id="lives"></div>
                 <div id="shields"></div>
             </div>

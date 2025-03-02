@@ -7,14 +7,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
 
     try {
-        // Check credentials and get email
-        $stmt = $db->prepare("SELECT user_id, username, email FROM users WHERE username = ? AND password = ?");
+        // Check credentials and get email and admin status
+        $stmt = $db->prepare("SELECT user_id, username, email, is_admin FROM users WHERE username = ? AND password = ?");
         $stmt->execute([$username, md5($password)]);
 
         if ($stmt->rowCount() > 0) {
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
             $_SESSION['username'] = $user['username'];
-            $_SESSION['email'] = $user['email']; // Store email in session
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['is_admin'] = $user['is_admin']; // Store admin status in session
             header("Location: Game.php");
             exit();
         } else {

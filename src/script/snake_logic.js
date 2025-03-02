@@ -81,7 +81,7 @@ function update() {
     // Check for collision with food
     if (!isGreyFoodActive && head.x === food.x && head.y === food.y) {
         score += food.points;
-        document.getElementById('score').innerText = `Score: ${score}`;
+        document.getElementById('score').innerText = `Pont: ${score}`;
         snake.unshift(head);
 
         // Handle different food types
@@ -381,6 +381,11 @@ function updateShieldsDisplay() {
     } else {
         shieldsContainer.style.display = 'none';
     }
+}
+
+function addPoints() {
+    score += 10;
+    document.getElementById('score').textContent = 'Pont: ' + score;
 }
 
 document.getElementById('startButton').addEventListener('click', () => {

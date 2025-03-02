@@ -3,7 +3,8 @@ CREATE TABLE users (
     username VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
-    personal_best INT DEFAULT 0
+    personal_best INT DEFAULT 0,
+    is_admin BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE scores (

@@ -2,6 +2,10 @@
 session_start();
 require 'db.php';
 
+if (isset($_POST['language'])) {
+    $_SESSION['language'] = $_POST['language'];
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $currentUser = $_SESSION['username'];
     $username = $_POST['username'];
