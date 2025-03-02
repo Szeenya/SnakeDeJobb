@@ -1,0 +1,404 @@
+body {
+    background: linear-gradient(to bottom, #04442C, #397A43);
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.page-container {
+    text-align: center;
+    padding: 20px;
+    padding-top: 70px; /* Add padding to account for fixed navbar */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.game-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.game_container {
+    background: #6DB75C;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+    width: auto; /* Changed from fixed width */
+    max-width: 800px; /* Added max-width */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.stats-panel {
+    background: #6DB75C;
+    padding: 20px;
+    border-radius: 10px;
+    min-width: 150px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    height: fit-content;
+}
+
+h1 {
+    font-size: 3em;
+    margin: 10px;
+}
+
+canvas {
+    background-color: #26563F; /* Barna szín */
+    border: 2px solid rgb(9, 108, 68); /* Arany színű keret */
+    box-shadow: 0 0 15px rgba(9, 108, 68, 0.5); /* Arany árnyék */
+    justify-self: center;
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+button {
+    background-color: #4CAF50; /* Zöld gomb */
+    color: white;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background-color: #45a049; /* Sötétebb zöld hover */
+    transform: scale(1.05); /* Kicsit nagyobb gomb hover */
+}
+
+#score {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: white;
+}
+
+#lives, #shields {
+    margin: 10px 0;
+    font-size: 1.5em;
+    display: block;
+    text-align: center; /* Center the hearts and shields */
+}
+
+/* Remove these classes as they're no longer used */
+
+.game-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.score-panel {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 10px;
+    min-width: 150px;
+    text-align: center;
+}
+
+.game-area {
+    position: relative;
+    background: #26563F;
+    border: 2px solid #FFD700;
+    box-shadow: 0 0 15px rgba(9, 108, 68, 0.5);
+}
+
+.welcome-text {
+    text-align: right;
+    padding: 10px;
+    margin: 0;
+}
+
+.welcome-text a {
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+.logout-btn {
+    margin-left: auto;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 0.8rem 1.5rem; /* Add more vertical and horizontal padding */
+}
+
+.navbar .nav-link {
+    color: white !important;
+    font-size: 1.2rem; /* Increase font size */
+    padding: 0.5rem 1.2rem; /* Add more padding around nav links */
+    margin: 0 0.5rem; /* Add margin between nav items */
+}
+
+.navbar-brand {
+    color: white !important;
+    font-size: 1.3rem; /* Increase font size */
+    margin-right: 2rem; /* Add more space after brand */
+}
+
+.navbar .welcome-text {
+    color: #fff;
+    font-size: 1.3rem; /* Increase font size */
+}
+
+.navbar .welcome-text span {
+    color: white;
+}
+
+.navbar-nav {
+    gap: 1rem; /* Add gap between nav items */
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 5px #ffff00, 0 0 10px #ffff00, 0 0 15px #ffff00;
+    }
+    to {
+        text-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00, 0 0 30px #ffff00;
+    }
+}
+
+.dropdown-menu {
+    background: linear-gradient(to bottom, #04442C, #397A43);
+    border: 1px solid green;
+}
+
+.dropdown-item {
+    color: #fff;
+    font-size: 1.1rem; /* Increase font size */
+    padding: 0.5rem 1rem; /* Add more padding for better touch targets */
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.modal-content {
+    background: linear-gradient(to bottom, #04442C, #397A43);
+    color: white;
+}
+
+.modal-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.form-control {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.form-control:focus {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+/* Override default disabled input styles */
+.form-control:disabled {
+    background-color: transparent;
+    opacity: 1;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: not-allowed;
+}
+
+.form-control:disabled:hover {
+    background-color: transparent;
+}
+
+.form-label {
+    color: white;
+}
+
+.btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+.danger-zone {
+    background: rgba(220, 53, 69, 0.1);
+    border: 1px solid rgba(220, 53, 69, 0.3);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+.btn-delete-account {
+    width: 100%;
+    background-color: #dc3545;
+    border: none;
+    color: white;
+    font-weight: 500;
+    padding: 0.75rem;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.btn-delete-account:hover {
+    background-color: #bb2d3b;
+    box-shadow: 0 0 15px rgba(220, 53, 69, 0.3);
+    transform: scale(1.02);
+}
+
+.danger-zone h6 {
+    margin-bottom: 1rem;
+}
+
+hr.border-light {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Leaderboard styles */
+/* Replace the table-dark styles with these new classes */
+.leaderboard-table {
+    width: 100%;
+    background: linear-gradient(135deg, #019875, #00AEAD) !important;
+    color: white !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    border: 2px solid #BFD834 !important;
+    border-collapse: collapse;
+}
+
+.leaderboard-table thead {
+    background: linear-gradient(to right, #019875, #00AEAD) !important;
+}
+
+.leaderboard-table th {
+    color: #BFD834 !important;
+    font-weight: bold !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    padding: 12px !important;
+    border-bottom: 2px solid #BFD834 !important;
+}
+
+.leaderboard-table td {
+    padding: 12px !important;
+    border-bottom: 1px solid #72CC50 !important;
+    color: white !important; /* Make all text white */
+}
+
+.leaderboard-table tbody tr:nth-of-type(odd) {
+    background-color: rgba(191, 216, 52, 0.1) !important;
+}
+
+.leaderboard-table tbody tr:nth-of-type(even) {
+    background-color: rgba(114, 204, 80, 0.1) !important;
+}
+
+#leaderboardTable tr:first-child td:nth-child(2) { /* Target player name cell */
+    color: #ffff00 !important; /* Yellow color */
+    text-shadow: 0 0 5px #ffff00, 0 0 10px #ffff00, 0 0 15px #ffff00 !important;
+    animation: glow 1s ease-in-out infinite alternate !important;
+}
+
+#leaderboardTable tr:first-child {
+    background: rgba(191, 216, 52, 0.2) !important;
+    color: #BFD834 !important;
+    font-weight: bold !important;
+    text-shadow: 0 0 5px rgba(191, 216, 52, 0.5) !important;
+}
+
+#leaderboardTable tr:nth-child(2) {
+    background: rgba(114, 204, 80, 0.2) !important;
+    color: #72CC50 !important;
+    font-weight: bold !important;
+    text-shadow: 0 0 5px rgba(114, 204, 80, 0.5) !important;
+}
+
+#leaderboardTable tr:nth-child(3) {
+    background: rgba(0, 174, 173, 0.2) !important;
+    color: #00AEAD !important;
+    font-weight: bold !important;
+    text-shadow: 0 0 5px rgba(0, 174, 173, 0.5) !important;
+}
+
+.leaderboard-table tbody tr:hover {
+    background-color: rgba(191, 216, 52, 0.2) !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Move the glow effect from .navbar .welcome-text span to new class */
+.username.first-place {
+    color: #ffff00 !important;
+    text-shadow: 0 0 5px #ffff00, 0 0 10px #ffff00, 0 0 15px #ffff00 !important;
+    animation: glow 1s ease-in-out infinite alternate !important;
+}
+
+/* Dark Mode Switch Styles */
+.form-check.form-switch {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    margin: 0;
+    width: 100%;
+}
+
+.form-check-label {
+    font-size: 1rem;
+    cursor: pointer;
+    order: 1;
+    margin-right: auto;
+}
+
+.form-check-input[type="checkbox"] {
+    height: 1.5rem !important;
+    width: 3rem !important;
+    margin: 0 !important;
+    cursor: pointer;
+    float: none !important;
+    order: 2;
+    background-color: #72CC50 !important;
+    border-color: #019875 !important;
+}
+
+.form-check-input:checked[type="checkbox"] {
+    background-color: #011B10 !important;
+    border-color: #133A1B !important;
+}
+
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.25rem rgba(114, 204, 80, 0.25) !important;
+}
+
+.form-check-input:checked:focus {
+    box-shadow: 0 0 0 0.25rem rgba(1, 27, 16, 0.25) !important;
+}

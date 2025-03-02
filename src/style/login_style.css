@@ -1,0 +1,166 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(to bottom, #04442C, #397A43);
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+}
+
+/* Módosítsd ezeket a stílusokat */
+.form-container {
+    background: #6DB75C;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(9, 108, 68, 0.5);
+    position: relative;
+    width: 100%;
+    min-height: 450px; /* Increased from 400px to 450px */
+    overflow: hidden;
+   
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: white;
+    text-align: center;
+    font-size: 2em;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 2px solid #26563F;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #04442C;
+}
+
+input:focus {
+    outline: none;
+    border-color: #04442C;
+    box-shadow: 0 0 5px rgba(4, 68, 44, 0.5);
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #2E7D32;
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+}
+
+button:hover {
+    background-color: #1B5E20;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Add these new styles */
+.register-form {
+    display: none;
+}
+
+.form-switch {
+    margin-top: auto;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.switch-button {
+    background: none;
+    border: none;
+    color: white;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 5px;
+    width: auto;
+    text-transform: none;
+    letter-spacing: normal;
+    box-shadow: none;
+    margin-top: auto;
+}
+
+.switch-button:hover {
+    color: #e0e0e0;
+    transform: none;
+    box-shadow: none;
+    background: none;
+    border: none;
+}
+
+.login-form,
+.register-form {
+    position: absolute;
+    width: calc(100% - 60px);
+    height: calc(100% - 60px);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.5s ease;
+    left: 30px;
+    top: 30px;
+}
+
+/* Initial states */
+.login-form {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.register-form {
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+/* Active states */
+.register-form.active {
+    transform: translateX(0);
+    opacity: 1;
+    display: block;
+}
+
+.login-form.inactive {
+    transform: translateX(-100%);
+    opacity: 0;
+}

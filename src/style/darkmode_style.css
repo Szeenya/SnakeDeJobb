@@ -1,0 +1,42 @@
+/* Dark theme colors */
+:root {
+    --dark-bg: linear-gradient(to bottom, #011B10, #133A1B);
+    --dark-element-bg: #133A1B;
+    --dark-border: #B7BF96;
+    --dark-text: #E4DEAE;
+}
+
+body.dark-mode {
+    background: var(--dark-bg) !important;
+    color: var(--dark-text) !important;
+}
+
+.dark-mode .game_container {
+    background: var(--dark-element-bg);
+    border: 2px solid var(--dark-border);
+}
+
+.dark-mode .stats-panel {
+    background: var(--dark-element-bg);
+    border: 2px solid var(--dark-border);
+}
+
+.dark-mode canvas {
+    background-color: #011B10;
+    border: 2px solid var(--dark-border);
+    box-shadow: 0 0 15px rgba(183, 191, 150, 0.2);
+}
+
+.dark-mode .modal-content {
+    background: var(--dark-bg);
+}
+
+.dark-mode .form-control {
+    background-color: rgba(183, 191, 150, 0.1);
+    border: 1px solid var(--dark-border);
+    color: var(--dark-text);
+}
+
+.dark-mode .form-control:disabled {
+    background-color: rgba(183, 191, 150, 0.05);
+}

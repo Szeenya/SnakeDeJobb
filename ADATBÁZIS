@@ -1,0 +1,50 @@
+CREATE TABLE users (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    personal_best INT DEFAULT 0
+);
+
+CREATE TABLE scores (
+    score_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    score INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+
+CREATE TABLE leaderboard (
+    leaderboard_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    score_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (score_id) REFERENCES scores(score_id) ON DELETE CASCADE
+);
+
+CREATE TABLE gamemode (
+    gamemode_id INT PRIMARY KEY AUTO_INCREMENT,
+    gamemode_name VARCHAR(255) NOT NULL UNIQUE
+);
+
+CREATE TABLE difficulty (
+    difficulty_id INT PRIMARY KEY AUTO_INCREMENT,
+    difficulty_level VARCHAR(255) NOT NULL UNIQUE
+);
+
+CREATE TABLE map (
+    map_id INT PRIMARY KEY AUTO_INCREMENT,
+    map_name VARCHAR(255) NOT NULL UNIQUE
+);
+
+CREATE TABLE game (
+    game_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    gamemode_id INT NOT NULL,
+    difficulty_id INT NOT NULL,
+    map_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (gamemode_id) REFERENCES gamemode(gamemode_id) ON DELETE CASCADE,
+    FOREIGN KEY (difficulty_id) REFERENCES difficulty(difficulty_id) ON DELETE CASCADE,
+    FOREIGN KEY (map_id) REFERENCES map(map_id) ON DELETE CASCADE
+);
